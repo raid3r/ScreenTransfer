@@ -52,6 +52,9 @@ namespace Server
                         int bytesRead = stream.Read(fileNameBuffer, 0, fileNameBuffer.Length);
                         string fileName = Encoding.UTF8.GetString(fileNameBuffer, 0, bytesRead);
 
+                        Console.WriteLine("Request");
+                        Console.WriteLine(fileName);
+
                         // Перевірити наявність файлу
                         if (File.Exists(fileName))
                         {
@@ -65,11 +68,13 @@ namespace Server
                                     stream.Write(fileBuffer, 0, bytesReadFile);
                                 }
                             }
+                            Console.WriteLine("File sent");
                         }
                         else
                         {
                             // Якщо файл не існує, можна відправити повідомлення про помилку
                             string errorMessage = "File not found.";
+                            Console.WriteLine(errorMessage);
                             byte[] errorBuffer = Encoding.UTF8.GetBytes(errorMessage);
                             stream.Write(errorBuffer, 0, errorBuffer.Length);
                         }
@@ -100,7 +105,7 @@ namespace Server
 
                     var root = TreeHelper.CreateTree(
                         withFiles: true,
-                        serverFolderPath: @"E:\!STUDY");
+                        serverFolderPath: @"C:\Users\kvvkv\source\repos");
                     //var root = CreateTree(@"E:\!STUDY");
 
                     // Серіалізація на сервері
