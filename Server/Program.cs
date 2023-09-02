@@ -31,11 +31,13 @@ namespace Server
             {
                 Console.WriteLine("Client connected to file server");
 
-                var root = CreateTree(@"C:\Users\kvvkv\source\repos");
+                var root = TreeHelper.CreateTree(
+                    withFiles: true,
+                    serverFolderPath: @"C:\Users\kvvkv\source\repos");
 
                 // Серіалізація на сервері
 
-                string json = JsonConvert.SerializeObject(root);                               
+                string json = JsonConvert.SerializeObject(root);
                 byte[] data = Encoding.UTF8.GetBytes(json);
                 client.GetStream().Write(data, 0, data.Length);
 
@@ -57,7 +59,7 @@ namespace Server
 
 
         }
-      
+
         static void ScreenServer(string ip)
         {
             IPAddress ipAddress = IPAddress.Parse("0.0.0.0");
@@ -104,7 +106,7 @@ namespace Server
                     }
                 }
             }
-        }  
+        }
         static Bitmap CaptureScreen()
         {
             Rectangle screenBounds = Screen.PrimaryScreen.Bounds;
@@ -117,91 +119,5 @@ namespace Server
 
             return screenshot;
         }
-
-        private static TreeNodeData CreateTree(string serverFolderPath)
-        {
-
-            var rootDir = new DirectoryInfo(serverFolderPath);
-
-            var rootNode = new TreeNodeData
-            {
-                Name = rootDir.Name,
-                FullName = rootDir.FullName,
-            };
-
-            PopulateTreeNodeData(rootNode, rootDir);
-            
-            return rootNode;    
-        }
-        //public static TreeNodeData ConvertToTreeNodeData(TreeNode treeNode)
-        //{
-        //    TreeNodeData dataNode = new TreeNodeData();
-        //    dataNode.Text = treeNode.Text;
-
-        //    foreach (TreeNode childNode in treeNode.Nodes)
-        //    {
-        //        dataNode.Nodes.Add(ConvertToTreeNodeData(childNode));
-        //    }
-
-        //    return dataNode;
-        //}
-
-        private static void PopulateTreeNodeData(TreeNodeData parentNode, DirectoryInfo directoryInfo)
-        {
-            try
-            {
-                foreach (var directory in directoryInfo.GetDirectories())
-                {
-                    var directoryNode = new TreeNodeData()
-                    {
-                        Name = directory.Name,
-                        FullName = directory.FullName,
-                        IsDirectory = true,
-                    };
-
-                    parentNode.Nodes.Add(directoryNode);
-                    PopulateTreeNodeData(directoryNode, directory);
-                }
-
-                foreach (var file in directoryInfo.GetFiles())
-                {
-                    var fileNode = new TreeNodeData()
-                    {
-                        Name = file.Name,
-                        FullName= file.FullName,
-                        IsDirectory = false,
-                    };
-
-                    parentNode.Nodes.Add(fileNode);
-                }
-            }
-            catch (UnauthorizedAccessException)
-            {
-                // Обробка помилок доступу
-            }
-        }
-
-        //private static void PopulateTreeView(TreeNode parentNode, DirectoryInfo directoryInfo)
-        //{
-        //    try
-        //    {
-        //        foreach (var directory in directoryInfo.GetDirectories())
-        //        {
-        //            TreeNode directoryNode = new TreeNode(directory.Name);
-        //            parentNode.Nodes.Add(directoryNode);
-        //            PopulateTreeView(directoryNode, directory);
-        //        }
-
-        //        foreach (var file in directoryInfo.GetFiles())
-        //        {
-        //            TreeNode fileNode = new TreeNode(file.Name);
-        //            parentNode.Nodes.Add(fileNode);
-        //        }
-        //    }
-        //    catch (UnauthorizedAccessException)
-        //    {
-        //        // Обробка помилок доступу
-        //    }
-        //}
     }
 }
