@@ -34,6 +34,7 @@ namespace Server
                 var root = TreeHelper.CreateTree(
                     withFiles: true,
                     serverFolderPath: @"C:\Users\kvvkv\source\repos");
+                var root = CreateTree(@"E:\!STUDY");
 
                 // Серіалізація на сервері
 

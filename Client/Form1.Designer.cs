@@ -37,10 +37,16 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button_CheckDir = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.treeView2 = new System.Windows.Forms.TreeView();
+            this.button_Receive = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -112,6 +118,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button_Receive);
+            this.tabPage2.Controls.Add(this.treeView2);
             this.tabPage2.Controls.Add(this.button_CheckDir);
             this.tabPage2.Controls.Add(this.treeView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -140,11 +148,45 @@
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
+            // treeView2
+            // 
+            this.treeView2.Location = new System.Drawing.Point(546, 46);
+            this.treeView2.Name = "treeView2";
+            this.treeView2.Size = new System.Drawing.Size(363, 433);
+            this.treeView2.TabIndex = 2;
+            // 
+            // button_Receive
+            // 
+            this.button_Receive.Location = new System.Drawing.Point(418, 222);
+            this.button_Receive.Name = "button_Receive";
+            this.button_Receive.Size = new System.Drawing.Size(106, 32);
+            this.button_Receive.TabIndex = 3;
+            this.button_Receive.Text = "Receive";
+            this.button_Receive.UseVisualStyleBackColor = true;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 557);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(977, 25);
+            this.statusStrip1.TabIndex = 5;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(10, 5, 5, 5);
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 15);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 582);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -153,7 +195,10 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -167,6 +212,11 @@
         private System.Windows.Forms.TextBox textBox_IP;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Button button_CheckDir;
+        private System.Windows.Forms.TreeView treeView2;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button button_Receive;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 
