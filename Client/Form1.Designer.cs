@@ -35,13 +35,15 @@
             this.button_ConnectToIP = new System.Windows.Forms.Button();
             this.textBox_IP = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button_Receive = new System.Windows.Forms.Button();
+            this.treeView2 = new System.Windows.Forms.TreeView();
             this.button_CheckDir = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.treeView2 = new System.Windows.Forms.TreeView();
-            this.button_Receive = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -130,6 +132,24 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // button_Receive
+            // 
+            this.button_Receive.Location = new System.Drawing.Point(418, 222);
+            this.button_Receive.Name = "button_Receive";
+            this.button_Receive.Size = new System.Drawing.Size(106, 32);
+            this.button_Receive.TabIndex = 3;
+            this.button_Receive.Text = "Receive";
+            this.button_Receive.UseVisualStyleBackColor = true;
+            this.button_Receive.Click += new System.EventHandler(this.button_Receive_Click);
+            // 
+            // treeView2
+            // 
+            this.treeView2.Location = new System.Drawing.Point(546, 46);
+            this.treeView2.Name = "treeView2";
+            this.treeView2.Size = new System.Drawing.Size(363, 433);
+            this.treeView2.TabIndex = 2;
+            this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterSelect);
+            // 
             // button_CheckDir
             // 
             this.button_CheckDir.Location = new System.Drawing.Point(150, 17);
@@ -148,26 +168,12 @@
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
-            // treeView2
-            // 
-            this.treeView2.Location = new System.Drawing.Point(546, 46);
-            this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(363, 433);
-            this.treeView2.TabIndex = 2;
-            // 
-            // button_Receive
-            // 
-            this.button_Receive.Location = new System.Drawing.Point(418, 222);
-            this.button_Receive.Name = "button_Receive";
-            this.button_Receive.Size = new System.Drawing.Size(106, 32);
-            this.button_Receive.TabIndex = 3;
-            this.button_Receive.Text = "Receive";
-            this.button_Receive.UseVisualStyleBackColor = true;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.toolStripStatusLabel1,
+            this.toolStripProgressBar1,
+            this.toolStripStatusLabel2});
             this.statusStrip1.Location = new System.Drawing.Point(0, 557);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(977, 25);
@@ -181,6 +187,17 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 15);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(118, 20);
+            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 19);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,6 +207,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -217,6 +235,8 @@
         private System.Windows.Forms.Button button_Receive;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
 

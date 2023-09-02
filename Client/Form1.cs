@@ -187,7 +187,90 @@ namespace Client
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             var data = e.Node.Tag as TreeNodeData;
-            MessageBox.Show((data.IsDirectory ? "DIR:" : "FILE: ") + data.FullName);
+            //MessageBox.Show((data.IsDirectory ? "DIR:" : "FILE: ") + data.FullName);
+            toolStripStatusLabel1.Text = data.FullName;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {        
+
+                var root = TreeHelper.CreateTree(
+                    withFiles: false,
+                    serverFolderPath: @"E:\");
+
+            // Створіть дерево з отриманих даних
+            TreeNode receivedTree = ConvertToTreeNode(root);
+
+            // Відобразіть дерево на клієнтському інтерфейсі
+            treeView2.Nodes.Add(receivedTree);
+        }
+
+        private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            var data = e.Node.Tag as TreeNodeData;
+            //MessageBox.Show((data.IsDirectory ? "DIR:" : "FILE: ") + data.FullName);
+            toolStripStatusLabel2.Text = data.FullName;
+        }
+
+        private void button_Receive_Click(object sender, EventArgs e)
+        {
+
+            string serverIp = textBox_IP.Text;
+            int serverPort = 12347;
+
+
+            var selectedNodeLeft = treeView1.SelectedNode;
+            var selectedNodeRight = treeView2.SelectedNode;
+
+            if (selectedNodeLeft == null || selectedNodeRight == null)
+            {
+                return;
+            }
+
+            var selectedNodeLeftData = selectedNodeLeft.Tag as TreeNodeData;
+            var selectedNodeRightData = selectedNodeRight.Tag as TreeNodeData;
+
+            if (selectedNodeLeftData.IsDirectory)
+            {
+                return;
+            }
+
+            string serverFile = selectedNodeLeftData.FullName;
+            string localDir = selectedNodeRightData.FullName;
+            string localFile = Path.Combine(localDir, Path.GetFileName(serverFile));
+
+            //TODO get file content from server and save to local file
+
+            // connect to server
+            // send full filename
+            // receive file content
+            // save to local file
+            // close connection
+
+            
+
+            // Підключення до сервера
+            using (TcpClient client = new TcpClient(serverIp, serverPort))
+            using (NetworkStream stream = client.GetStream())
+            {
+                // Відправити повне ім'я файлу на сервер
+                byte[] fileNameBuffer = Encoding.UTF8.GetBytes(serverFile);
+                stream.Write(fileNameBuffer, 0, fileNameBuffer.Length);
+
+                // Отримати вміст файлу від сервера і зберегти його локально
+                using (FileStream localFileStream = File.Create(localFile))
+                {
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
+                    while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        localFileStream.Write(buffer, 0, bytesRead);
+                    }
+                        MessageBox.Show("File received");
+                }
+            }
+
+
         }
     }
 
